@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simply STONED | The Dessert Heaven of Kakinada</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Georgia', serif; background: #f7f5e8; color: #2d2d2d; line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* Header */
+header { background: #f7f5e8; padding: 20px 0; border-bottom: 4px solid #c3a96f; position: sticky; top: 0; z-index: 100; }
+.logo { font-family: 'Brush Script MT', cursive; font-size: 2.5rem; color: #4a4a4a; text-align: center; }
+.tagline { text-align: center; font-size: 0.9rem; letter-spacing: 2px; color: #4a4a4a; margin-top: 4px; }
+.nav { text-align: center; margin-top: 12px; }
+.nav a { margin: 0 15px; text-decoration: none; color: #4a4a4a; font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
+.nav a:hover { color: #c3a96f; }
+
+/* Hero */
+.hero { background: url('assets/images/hero.jpg') center/cover no-repeat; min-height: 60vh; display: flex; align-items: center; justify-content: center; position: relative; }
+.hero::after { content: ''; position: absolute; inset: 0; background: rgba(247, 245, 232, 0.75); }
+.hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; padding: 0 20px; }
+.hero h1 { font-size: 4rem; color: #fcd900; text-transform: uppercase; font-weight: 800; text-shadow: 3px 3px 0 #1a4a1a; margin-bottom: 10px; }
+.hero h2 { font-family: 'Brush Script MT', cursive; font-size: 3rem; color: #c3a96f; margin-bottom: 15px; }
+.opening-card { display: inline-block; background: #a51c30; color: #fff; padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 1.1rem; margin: 10px 0; }
+.opening-time { background: #fcd900; color: #1a4a1a; display: inline-block; padding: 10px 26px; border-radius: 8px; font-weight: 700; font-size: 1.1rem; }
+
+/* Sections */
+section { padding: 80px 0; }
+.section-title { text-align: center; font-size: 2.2rem; color: #1a4a1a; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+.section-sub { text-align: center; color: #c3a96f; font-weight: 700; margin-bottom: 50px; font-size: 1.1rem; letter-spacing: 1px; }
+
+/* Categories */
+.categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+.cat-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.12); transition: transform 0.3s; border: 2px solid transparent; }
+.cat-card:hover { transform: translateY(-6px); }
+.cat-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+.cat-card h3 { text-align: center; padding: 16px 10px 10px; font-size: 1.25rem; color: #1a4a1a; text-transform: uppercase; font-weight: 700; }
+.cat-tag { display: block; text-align: center; padding: 0 10px 18px; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; }
+.stone-cream .cat-tag { background: #fcd900; color: #1a4a1a; width: fit-content; margin: 0 auto 12px; border-radius: 4px; padding: 2px 12px; }
+.milkshake .cat-tag { background: #8d6e63; color: #fff; width: fit-content; margin: 0 auto 12px; border-radius: 4px; padding: 2px 12px; }
+.thick-shake .cat-tag { background: #f48c42; color: #fff; width: fit-content; margin: 0 auto 12px; border-radius: 4px; padding: 2px 12px; }
+.fruit-juice .cat-tag { background: #2e7d32; color: #fff; width: fit-content; margin: 0 auto 12px; border-radius: 4px; padding: 2px 12px; }
+
+/* Menu */
+.menu { background: #fff; }
+.menu-tabs { display: flex; justify-content: center; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
+.menu-tab { padding: 10px 24px; border: 2px solid #c3a96f; background: transparent; color: #1a4a1a; font-weight: 700; border-radius: 30px; cursor: pointer; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; }
+.menu-tab.active { background: #1a4a1a; color: #fff; }
+.menu-tab:hover { background: #1a4a1a; color: #fff; }
+.menu-category { display: none; animation: fadeIn 0.4s ease; }
+.menu-category.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.menu-item { background: #f7f5e8; border-radius: 14px; padding: 20px; display: flex; gap: 16px; align-items: center; border: 2px solid transparent; transition: all 0.3s; }
+.menu-item:hover { border-color: #c3a96f; transform: translateY(-3px); }
+.menu-img { width: 95px; height: 95px; min-width: 95px; border-radius: 12px; object-fit: cover; flex-shrink: 0; display: block; background: #e2d8b8; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid rgba(195,169,111,0.3); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.menu-item:hover .menu-img { transform: scale(1.05); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+.menu-info { flex: 1; }
+.menu-item h4 { font-size: 1.15rem; color: #1a4a1a; margin-bottom: 4px; text-transform: uppercase; font-weight: 700; }
+.menu-item p { color: #4a4a4a; font-size: 0.9rem; margin-bottom: 10px; }
+.menu-price { font-size: 1.2rem; font-weight: 800; color: #a51c30; }
+.book-btn { display: inline-block; margin-top: 10px; background: #25d366; color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; transition: background 0.3s; }
+.book-btn:hover { background: #1ebe5f; }
+.empty-state { text-align: center; padding: 60px 20px; color: #888; font-size: 1.1rem; }
+
+/* Contact */
+.contact { background: #1a4a1a; color: #fff; text-align: center; padding: 100px 0; }
+.contact .section-title, .contact .section-sub { color: #fff; }
+.contact .section-sub { color: #c3a96f; }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 50px; }
+.contact-item { display: flex; align-items: center; gap: 15px; font-size: 1.1rem; }
+.contact-item .icon { font-size: 1.6rem; }
+.contact-item strong { color: #fcd900; }
+.contact-phones { margin-top: 10px; font-size: 1.05rem; color: #ddd; }
+.map-link { color: #fcd900; text-decoration: none; font-weight: 700; display: inline-block; }
+.map-link:hover { text-decoration: underline; }
+.phone-link { color: #fcd900; text-decoration: none; font-weight: 700; }
+.phone-link:hover { text-decoration: underline; }
+
+/* Footer */
+footer { background: #f7f5e8; text-align: center; padding: 40px 0; font-size: 0.95rem; color: #c3a96f; font-style: italic; border-top: 2px solid #c3a96f; }
+footer span { color: #4a4a4a; font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 768px) { .hero h1 { font-size: 2.6rem; } .hero h2 { font-size: 2rem; } section { padding: 50px 0; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">Simply<span style="color:#1a4a1a;font-weight:800;"> STONED</span></div>
+    <div class="tagline">THE DESSERT HEAVEN OF KAKINADA</div>
+    <nav class="nav">
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-content">
+    <a href="https://wa.me/916301084749" class="opening-card">Order on WhatsApp</a>
+  </div>
+</section>
+
+<section id="categories" class="categories-section">
+  <div class="container">
+    <h2 class="section-title">Our Treats</h2>
+    <div class="section-sub">Cool Treats Happy Moments</div>
+    <div class="categories">
+      <div class="cat-card stone-cream">
+        <img src="assets/images/stone_ice_cream.jpg" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Stone Ice Cream">
+        <h3>Stone Ice Cream</h3>
+        <span class="cat-tag">Stone Ice Creams</span>
+      </div>
+      <div class="cat-card milkshake">
+        <img src="assets/images/milkshake.jpg" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Milkshakes">
+        <h3>Milkshakes</h3>
+        <span class="cat-tag">Milkshakes</span>
+      </div>
+      <div class="cat-card thick-shake">
+        <img src="assets/images/thick_shake.jpg" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Thick Shakes">
+        <h3>Thick Shakes</h3>
+        <span class="cat-tag">Thick Shakes</span>
+      </div>
+      <div class="cat-card fruit-juice">
+        <img src="assets/images/fruit_juices.jpg" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Fruit Juices">
+        <h3>Fruit Juices</h3>
+        <span class="cat-tag">Fruit Juices</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="menu">
+  <div class="container">
+    <h2 class="section-title">Menu</h2>
+    <div class="section-sub">Choose Your Treat</div>
+    <div class="menu-tabs">
+      <button class="menu-tab active" data-category="stone">Stone Ice Cream</button>
+      <button class="menu-tab" data-category="milkshake">Milkshakes</button>
+      <button class="menu-tab" data-category="thick">Thick Shakes</button>
+      <button class="menu-tab" data-category="juice">Fruit Juices</button>
+      <button class="menu-tab" data-category="special">Special Desserts</button>
+    </div>
+
+    <div class="menu-category active" id="cat-stone">
+      <div class="menu-grid">
+        <div class="menu-item"><img src="assets/images/menu/classic-chocolate-stone.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Classic Chocolate Stone"><div class="menu-info"><h4>1. Classic Chocolate Stone</h4><p>Rich chocolate stone ice cream.</p><div class="menu-price">₹119</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/oreo-stone-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Oreo Stone Ice Cream"><div class="menu-info"><h4>2. Oreo Stone Ice Cream</h4><p>Crushed Oreo cookies in stone ice cream.</p><div class="menu-price">₹139</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/kitkat-stone-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="KitKat Stone Ice Cream"><div class="menu-info"><h4>3. KitKat Stone Ice Cream</h4><p>KitKat pieces blended into stone ice cream.</p><div class="menu-price">₹149</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/brownie-stone-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Brownie Stone Ice Cream"><div class="menu-info"><h4>4. Brownie Stone Ice Cream</h4><p>Chunky brownie pieces in stone ice cream.</p><div class="menu-price">₹169</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/nutella-stone-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Nutella Stone Ice Cream"><div class="menu-info"><h4>5. Nutella Stone Ice Cream</h4><p>Nutella swirl in stone ice cream.</p><div class="menu-price">₹179</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/ferrero-rocher-stone.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Ferrero Rocher Stone"><div class="menu-info"><h4>6. Ferrero Rocher Stone</h4><p>Ferrero Rocher chunks in stone ice cream.</p><div class="menu-price">₹189</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/strawberry-stone-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Strawberry Stone Ice Cream"><div class="menu-info"><h4>7. Strawberry Stone Ice Cream</h4><p>Fresh strawberry stone ice cream.</p><div class="menu-price">₹119</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/mango-stone-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Mango Stone Ice Cream"><div class="menu-info"><h4>8. Mango Stone Ice Cream</h4><p>Alphonso mango stone ice cream.</p><div class="menu-price">₹119</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/blueberry-stone-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Blueberry Stone Ice Cream"><div class="menu-info"><h4>9. Blueberry Stone Ice Cream</h4><p>Blueberry flavored stone ice cream.</p><div class="menu-price">₹149</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/blackcurrant-stone-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Blackcurrant Stone Ice Cream"><div class="menu-info"><h4>10. Blackcurrant Stone Ice Cream</h4><p>Blackcurrant stone ice cream.</p><div class="menu-price">₹139</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/butterscotch-stone-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Butterscotch Stone Ice Cream"><div class="menu-info"><h4>11. Butterscotch Stone Ice Cream</h4><p>Butterscotch stone ice cream.</p><div class="menu-price">₹129</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/vanilla-choco-chip-stone.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Vanilla Choco Chip Stone"><div class="menu-info"><h4>12. Vanilla Choco Chip Stone</h4><p>Vanilla stone ice cream with choco chips.</p><div class="menu-price">₹119</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/pista-stone-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Pista Stone Ice Cream"><div class="menu-info"><h4>13. Pista Stone Ice Cream</h4><p>Pistachio stone ice cream.</p><div class="menu-price">₹139</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/bubblegum-stone-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Bubblegum Stone Ice Cream"><div class="menu-info"><h4>14. Bubblegum Stone Ice Cream</h4><p>Bubblegum flavored stone ice cream.</p><div class="menu-price">₹129</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/dry-fruit-stone-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Dry Fruit Stone Ice Cream"><div class="menu-info"><h4>15. Dry Fruit Stone Ice Cream</h4><p>Mixed dry fruits in stone ice cream.</p><div class="menu-price">₹159</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/mixed-fruit-stone-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Mixed Fruit Stone Ice Cream"><div class="menu-info"><h4>16. Mixed Fruit Stone Ice Cream</h4><p>Mixed fruits in stone ice cream.</p><div class="menu-price">₹149</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/death-by-chocolate-stone.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Death by Chocolate Stone"><div class="menu-info"><h4>17. Death by Chocolate Stone</h4><p>Triple chocolate stone ice cream.</p><div class="menu-price">₹179</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/brownie-fudge-stone.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Brownie Fudge Stone"><div class="menu-info"><h4>18. Brownie Fudge Stone</h4><p>Brownie with fudge stone ice cream.</p><div class="menu-price">₹169</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/cookies-amp-cream-stone.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Cookies &amp; Cream Stone"><div class="menu-info"><h4>19. Cookies &amp; Cream Stone</h4><p>Cookies and cream stone ice cream.</p><div class="menu-price">₹139</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/simply-stoned-special-stone.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Simply Stoned Special Stone"><div class="menu-info"><h4>20. Simply Stoned Special Stone</h4><p>Our signature special stone ice cream.</p><div class="menu-price">₹199</div></div></div>
+      </div>
+    </div>
+
+    <div class="menu-category" id="cat-milkshake">
+      <div class="menu-grid">
+        <div class="menu-item"><img src="assets/images/menu/vanilla-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Vanilla Milkshake"><div class="menu-info"><h4>1. Vanilla Milkshake</h4><p>Classic vanilla milkshake.</p><div class="menu-price">₹79</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/chocolate-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Chocolate Milkshake"><div class="menu-info"><h4>2. Chocolate Milkshake</h4><p>Rich chocolate milkshake.</p><div class="menu-price">₹99</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/strawberry-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Strawberry Milkshake"><div class="menu-info"><h4>3. Strawberry Milkshake</h4><p>Fresh strawberry milkshake.</p><div class="menu-price">₹99</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/mango-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Mango Milkshake"><div class="menu-info"><h4>4. Mango Milkshake</h4><p>Alphonso mango milkshake.</p><div class="menu-price">₹99</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/banana-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Banana Milkshake"><div class="menu-info"><h4>5. Banana Milkshake</h4><p>Fresh banana milkshake.</p><div class="menu-price">₹89</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/oreo-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Oreo Milkshake"><div class="menu-info"><h4>6. Oreo Milkshake</h4><p>Oreo cookies milkshake.</p><div class="menu-price">₹119</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/kitkat-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="KitKat Milkshake"><div class="menu-info"><h4>7. KitKat Milkshake</h4><p>KitKat pieces milkshake.</p><div class="menu-price">₹129</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/dairy-milk-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Dairy Milk Shake"><div class="menu-info"><h4>8. Dairy Milk Shake</h4><p>Dairy Milk chocolate milkshake.</p><div class="menu-price">₹129</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/butterscotch-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Butterscotch Milkshake"><div class="menu-info"><h4>9. Butterscotch Milkshake</h4><p>Butterscotch milkshake.</p><div class="menu-price">₹99</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/blackcurrant-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Blackcurrant Milkshake"><div class="menu-info"><h4>10. Blackcurrant Milkshake</h4><p>Blackcurrant milkshake.</p><div class="menu-price">₹109</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/blueberry-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Blueberry Milkshake"><div class="menu-info"><h4>11. Blueberry Milkshake</h4><p>Blueberry milkshake.</p><div class="menu-price">₹119</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/pista-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Pista Milkshake"><div class="menu-info"><h4>12. Pista Milkshake</h4><p>Pistachio milkshake.</p><div class="menu-price">₹119</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/badam-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Badam Milkshake"><div class="menu-info"><h4>13. Badam Milkshake</h4><p>Almond milkshake.</p><div class="menu-price">₹119</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/rose-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Rose Milkshake"><div class="menu-info"><h4>14. Rose Milkshake</h4><p>Rose flavored milkshake.</p><div class="menu-price">₹89</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/cold-coffee.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Cold Coffee"><div class="menu-info"><h4>15. Cold Coffee</h4><p>Chilled cold coffee.</p><div class="menu-price">₹119</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/coffee-chocolate-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Coffee Chocolate Shake"><div class="menu-info"><h4>16. Coffee Chocolate Shake</h4><p>Coffee and chocolate shake.</p><div class="menu-price">₹129</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/apple-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Apple Milkshake"><div class="menu-info"><h4>17. Apple Milkshake</h4><p>Fresh apple milkshake.</p><div class="menu-price">₹99</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/chickoo-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Chickoo Milkshake"><div class="menu-info"><h4>18. Chickoo Milkshake</h4><p>Fresh chickoo milkshake.</p><div class="menu-price">₹99</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/pineapple-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Pineapple Milkshake"><div class="menu-info"><h4>19. Pineapple Milkshake</h4><p>Pineapple milkshake.</p><div class="menu-price">₹99</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/mixed-fruit-milkshake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Mixed Fruit Milkshake"><div class="menu-info"><h4>20. Mixed Fruit Milkshake</h4><p>Mixed fruit milkshake.</p><div class="menu-price">₹119</div></div></div>
+      </div>
+    </div>
+
+    <div class="menu-category" id="cat-thick">
+      <div class="menu-grid">
+        <div class="menu-item"><img src="assets/images/menu/oreo-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Oreo Thick Shake"><div class="menu-info"><h4>1. Oreo Thick Shake</h4><p>Ultra-thick Oreo shake.</p><div class="menu-price">₹149</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/kitkat-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="KitKat Thick Shake"><div class="menu-info"><h4>2. KitKat Thick Shake</h4><p>Ultra-thick KitKat shake.</p><div class="menu-price">₹149</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/brownie-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Brownie Thick Shake"><div class="menu-info"><h4>3. Brownie Thick Shake</h4><p>Ultra-thick brownie shake.</p><div class="menu-price">₹169</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/nutella-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Nutella Thick Shake"><div class="menu-info"><h4>4. Nutella Thick Shake</h4><p>Ultra-thick Nutella shake.</p><div class="menu-price">₹179</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/ferrero-rocher-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Ferrero Rocher Thick Shake"><div class="menu-info"><h4>5. Ferrero Rocher Thick Shake</h4><p>Ultra-thick Ferrero Rocher shake.</p><div class="menu-price">₹189</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/belgian-chocolate-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Belgian Chocolate Thick Shake"><div class="menu-info"><h4>6. Belgian Chocolate Thick Shake</h4><p>Ultra-thick Belgian chocolate shake.</p><div class="menu-price">₹169</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/dark-chocolate-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Dark Chocolate Thick Shake"><div class="menu-info"><h4>7. Dark Chocolate Thick Shake</h4><p>Ultra-thick dark chocolate shake.</p><div class="menu-price">₹159</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/dairy-milk-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Dairy Milk Thick Shake"><div class="menu-info"><h4>8. Dairy Milk Thick Shake</h4><p>Ultra-thick Dairy Milk shake.</p><div class="menu-price">₹149</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/snickers-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Snickers Thick Shake"><div class="menu-info"><h4>9. Snickers Thick Shake</h4><p>Ultra-thick Snickers shake.</p><div class="menu-price">₹159</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/chocolate-fudge-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Chocolate Fudge Thick Shake"><div class="menu-info"><h4>10. Chocolate Fudge Thick Shake</h4><p>Ultra-thick chocolate fudge shake.</p><div class="menu-price">₹169</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/strawberry-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Strawberry Thick Shake"><div class="menu-info"><h4>11. Strawberry Thick Shake</h4><p>Ultra-thick strawberry shake.</p><div class="menu-price">₹139</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/mango-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Mango Thick Shake"><div class="menu-info"><h4>12. Mango Thick Shake</h4><p>Ultra-thick mango shake.</p><div class="menu-price">₹139</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/blueberry-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Blueberry Thick Shake"><div class="menu-info"><h4>13. Blueberry Thick Shake</h4><p>Ultra-thick blueberry shake.</p><div class="menu-price">₹159</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/blackcurrant-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Blackcurrant Thick Shake"><div class="menu-info"><h4>14. Blackcurrant Thick Shake</h4><p>Ultra-thick blackcurrant shake.</p><div class="menu-price">₹149</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/butterscotch-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Butterscotch Thick Shake"><div class="menu-info"><h4>15. Butterscotch Thick Shake</h4><p>Ultra-thick butterscotch shake.</p><div class="menu-price">₹139</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/red-velvet-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Red Velvet Thick Shake"><div class="menu-info"><h4>16. Red Velvet Thick Shake</h4><p>Ultra-thick red velvet shake.</p><div class="menu-price">₹169</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/death-by-chocolate.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Death by Chocolate"><div class="menu-info"><h4>17. Death by Chocolate</h4><p>Ultra-thick triple chocolate shake.</p><div class="menu-price">₹199</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/coffee-crunch-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Coffee Crunch Thick Shake"><div class="menu-info"><h4>18. Coffee Crunch Thick Shake</h4><p>Ultra-thick coffee crunch shake.</p><div class="menu-price">₹149</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/dry-fruit-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Dry Fruit Thick Shake"><div class="menu-info"><h4>19. Dry Fruit Thick Shake</h4><p>Ultra-thick dry fruit shake.</p><div class="menu-price">₹169</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/simply-stoned-special-thick-shake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Simply Stoned Special Thick Shake"><div class="menu-info"><h4>20. Simply Stoned Special Thick Shake</h4><p>Our signature special thick shake.</p><div class="menu-price">₹199</div></div></div>
+      </div>
+    </div>
+
+    <div class="menu-category" id="cat-juice">
+      <div class="menu-grid">
+        <div class="menu-item"><img src="assets/images/menu/sweet-lime-mosambi-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Sweet Lime (Mosambi) Juice"><div class="menu-info"><h4>1. Sweet Lime (Mosambi) Juice</h4><p>Fresh sweet lime juice.</p><div class="menu-price">₹79</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/orange-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Orange Juice"><div class="menu-info"><h4>2. Orange Juice</h4><p>Fresh orange juice.</p><div class="menu-price">₹89</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/watermelon-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Watermelon Juice"><div class="menu-info"><h4>3. Watermelon Juice</h4><p>Fresh watermelon juice.</p><div class="menu-price">₹69</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/pineapple-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Pineapple Juice"><div class="menu-info"><h4>4. Pineapple Juice</h4><p>Fresh pineapple juice.</p><div class="menu-price">₹79</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/mango-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Mango Juice"><div class="menu-info"><h4>5. Mango Juice</h4><p>Fresh mango juice.</p><div class="menu-price">₹89</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/pomegranate-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Pomegranate Juice"><div class="menu-info"><h4>6. Pomegranate Juice</h4><p>Fresh pomegranate juice.</p><div class="menu-price">₹119</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/apple-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Apple Juice"><div class="menu-info"><h4>7. Apple Juice</h4><p>Fresh apple juice.</p><div class="menu-price">₹99</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/grapes-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Grapes Juice"><div class="menu-info"><h4>8. Grapes Juice</h4><p>Fresh grapes juice.</p><div class="menu-price">₹89</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/muskmelon-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Muskmelon Juice"><div class="menu-info"><h4>9. Muskmelon Juice</h4><p>Fresh muskmelon juice.</p><div class="menu-price">₹79</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/papaya-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Papaya Juice"><div class="menu-info"><h4>10. Papaya Juice</h4><p>Fresh papaya juice.</p><div class="menu-price">₹79</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/mixed-fruit-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Mixed Fruit Juice"><div class="menu-info"><h4>11. Mixed Fruit Juice</h4><p>Mixed fresh fruit juice.</p><div class="menu-price">₹99</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/lemon-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Lemon Juice"><div class="menu-info"><h4>12. Lemon Juice</h4><p>Fresh lemon juice.</p><div class="menu-price">₹39</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/lemon-mint-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Lemon Mint Juice"><div class="menu-info"><h4>13. Lemon Mint Juice</h4><p>Lemon mint juice.</p><div class="menu-price">₹49</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/watermelon-mint-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Watermelon Mint Juice"><div class="menu-info"><h4>14. Watermelon Mint Juice</h4><p>Watermelon mint juice.</p><div class="menu-price">₹79</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/carrot-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Carrot Juice"><div class="menu-info"><h4>15. Carrot Juice</h4><p>Fresh carrot juice.</p><div class="menu-price">₹69</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/beetroot-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Beetroot Juice"><div class="menu-info"><h4>16. Beetroot Juice</h4><p>Fresh beetroot juice.</p><div class="menu-price">₹69</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/abc-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="ABC Juice"><div class="menu-info"><h4>17. ABC Juice</h4><p>Apple, Beetroot, Carrot juice.</p><div class="menu-price">₹119</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/guava-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Guava Juice"><div class="menu-info"><h4>18. Guava Juice</h4><p>Fresh guava juice.</p><div class="menu-price">₹79</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/kiwi-juice.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Kiwi Juice"><div class="menu-info"><h4>19. Kiwi Juice</h4><p>Fresh kiwi juice.</p><div class="menu-price">₹129</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/tropical-fruit-punch.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Tropical Fruit Punch"><div class="menu-info"><h4>20. Tropical Fruit Punch</h4><p>Tropical fruit punch.</p><div class="menu-price">₹119</div></div></div>
+      </div>
+    </div>
+
+    <div class="menu-category" id="cat-special">
+      <div class="menu-grid">
+        <div class="menu-item"><img src="assets/images/menu/brownie-with-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Brownie with Ice Cream"><div class="menu-info"><h4>1. Brownie with Ice Cream</h4><p>Warm brownie with ice cream scoop.</p><div class="menu-price">₹149</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/sizzling-brownie.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Sizzling Brownie"><div class="menu-info"><h4>2. Sizzling Brownie</h4><p>Hot sizzling brownie dessert.</p><div class="menu-price">₹179</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/chocolate-sundae.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Chocolate Sundae"><div class="menu-info"><h4>3. Chocolate Sundae</h4><p>Classic chocolate sundae.</p><div class="menu-price">₹129</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/oreo-sundae.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Oreo Sundae"><div class="menu-info"><h4>4. Oreo Sundae</h4><p>Oreo cookie sundae.</p><div class="menu-price">₹139</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/royal-falooda.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Royal Falooda"><div class="menu-info"><h4>5. Royal Falooda</h4><p>Royal falooda dessert.</p><div class="menu-price">₹149</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/classic-falooda.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Classic Falooda"><div class="menu-info"><h4>6. Classic Falooda</h4><p>Classic falooda dessert.</p><div class="menu-price">₹119</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/kulfi-falooda.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Kulfi Falooda"><div class="menu-info"><h4>7. Kulfi Falooda</h4><p>Kulfi falooda dessert.</p><div class="menu-price">₹139</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/fruit-salad-with-ice-cream.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Fruit Salad with Ice Cream"><div class="menu-info"><h4>8. Fruit Salad with Ice Cream</h4><p>Fresh fruit salad with ice cream.</p><div class="menu-price">₹129</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/chocolate-lava-cake.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Chocolate Lava Cake"><div class="menu-info"><h4>9. Chocolate Lava Cake</h4><p>Warm chocolate lava cake.</p><div class="menu-price">₹129</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/chocolate-mousse.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Chocolate Mousse"><div class="menu-info"><h4>10. Chocolate Mousse</h4><p>Rich chocolate mousse.</p><div class="menu-price">₹119</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/chocolate-waffle.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Chocolate Waffle"><div class="menu-info"><h4>11. Chocolate Waffle</h4><p>Chocolate waffle dessert.</p><div class="menu-price">₹149</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/nutella-waffle.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Nutella Waffle"><div class="menu-info"><h4>12. Nutella Waffle</h4><p>Nutella waffle dessert.</p><div class="menu-price">₹179</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/brownie-waffle.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Brownie Waffle"><div class="menu-info"><h4>13. Brownie Waffle</h4><p>Brownie waffle dessert.</p><div class="menu-price">₹169</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/chocolate-pancakes.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Chocolate Pancakes"><div class="menu-info"><h4>14. Chocolate Pancakes</h4><p>Chocolate pancakes dessert.</p><div class="menu-price">₹149</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/ice-cream-pancakes.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Ice Cream Pancakes"><div class="menu-info"><h4>15. Ice Cream Pancakes</h4><p>Pancakes with ice cream.</p><div class="menu-price">₹159</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/chocolate-fudge-sundae.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Chocolate Fudge Sundae"><div class="menu-info"><h4>16. Chocolate Fudge Sundae</h4><p>Chocolate fudge sundae.</p><div class="menu-price">₹159</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/banana-split.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Banana Split"><div class="menu-info"><h4>17. Banana Split</h4><p>Classic banana split.</p><div class="menu-price">₹149</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/caramel-sundae.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Caramel Sundae"><div class="menu-info"><h4>18. Caramel Sundae</h4><p>Caramel sundae dessert.</p><div class="menu-price">₹139</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/dry-fruit-sundae.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Dry Fruit Sundae"><div class="menu-info"><h4>19. Dry Fruit Sundae</h4><p>Dry fruit sundae dessert.</p><div class="menu-price">₹159</div></div></div>
+        <div class="menu-item"><img src="assets/images/menu/simply-stoned-special-dessert.jpg" class="menu-img" onerror="this.onerror=null;this.src='assets/images/dessert-fallback.jpg';" alt="Simply Stoned Special Dessert"><div class="menu-info"><h4>20. Simply Stoned Special Dessert</h4><p>Our signature special dessert.</p><div class="menu-price">₹199</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <h2 class="section-title">Visit Us</h2>
+    <div class="section-sub">Come & Enjoy</div>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="icon">📍</span>
+        <div>
+          <a href="https://www.google.com/maps/search/?api=1&query=Near+Venky+Residency+Beside+Satya+Graphics+Kakinada" target="_blank" rel="noopener" class="map-link">
+            <strong>Near Venky Residency</strong><br>Beside Satya Graphics
+          </a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="icon">📞</span>
+        <div class="contact-phones">
+          Call on WhatsApp:<br>
+          <a href="https://wa.me/916301084749" class="phone-link">6301084749</a><br>
+          <a href="https://wa.me/916281905733" class="phone-link">6281905733</a><br>
+          <a href="https://wa.me/918309927233" class="phone-link">83099 27233</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Sweeten<span>ess</span> in every bite 🤍
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.menu-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.menu-category').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('cat-' + tab.dataset.category).classList.add('active');
+  });
+});
+
+document.querySelectorAll('.menu-item').forEach(item => {
+  if (item.querySelector('.book-btn')) return;
+  const nameEl = item.querySelector('h4');
+  const priceEl = item.querySelector('.menu-price');
+  if (!nameEl) return;
+  const rawName = nameEl.textContent.replace(/^\d+\.\s*/, '');
+  const price = priceEl ? priceEl.textContent : '';
+  const btn = document.createElement('a');
+  btn.href = 'https://wa.me/916301084749?text=' + encodeURIComponent(rawName + ' - ' + price);
+  btn.className = 'book-btn';
+  btn.target = '_blank';
+  btn.rel = 'noopener';
+  btn.textContent = 'Order Now';
+  priceEl.parentNode.appendChild(btn);
+});
+</script>
+
+</body>
+</html>
